@@ -3,7 +3,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 # Czysty kod JavaScript
 
 ## Spis treści
-  1. [Introduction](#introduction)
+  1. [Wprowadzenie](#wprowadzenie)
   2. [Variables](#variables)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
@@ -16,6 +16,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   11. [Comments](#comments)
   12. [Translation](#translation)
 
+<!--
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
@@ -42,6 +43,31 @@ mistakes. Every piece of code starts as a first draft, like wet clay getting
 shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
+-->
+## Wprowadzenie
+![Humorystyczny obrazek przedstawiający ocenę jakości oprogramowania za pomocą ilości przekleństw
+wykrzyczanych podczas czytania kodu](http://www.osnews.com/images/comics/wtfm.jpg)
+
+Zasady inżynierii oprogramowania z książki Roberta C. Martina
+[*Czysty kod*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
+dostosowane do języka JavaScript. Nie są to wytyczne dotyczące stylu. To wytyczne do tworzenia
+czytelnego, prostego w refaktoryzacji i wielokrotnym użyciu oprogramowania w języku JavaScript.
+
+Nie każda z podanych tu zasad musi być ściśle przestrzegana i nie wszystkie z nich będą
+powszechnie przyjęte. To nic więcej, niż wskazówki zebrane dzięki wieloletniemu 
+doświadczeniu autorów *Czystego kodu*.
+
+Inżynieria oprogramowania ma trochę ponad 50 lat i nadal wiele się uczymy.
+Gdy architektura oprogramowania będzie tak stara jak sama architektura,
+wtedy może będziemy mieli trudniejsze zasady do przestrzegania. Na razie niech te
+wytyczne służą jako podstawa do oceny jakości kodu JavaScript, który Ty i Twój zespół tworzycie.
+
+Jeszcze jedno: poznanie zasad nie zrobi z Ciebie lepszego programisty w mgnieniu oka,
+a wieloletnia praca zgodnie z nimi nie sprawi, że przestaniesz popełniać błędy.
+Każdy kawałek kodu zaczyna się od wstępnego szkicu i jest jak mokra glina formowana
+do ostatecznego kształtu. Wreszcie niczym rzeźbiarz dłutem usuwamy wszelkie niedoskonałości
+podczas przeglądu kodu wspólnie z kolegami. Nie zadręczaj się wstępnymi szkicami wymagającymi poprawek.
+Zamiast tego męcz kod!
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
