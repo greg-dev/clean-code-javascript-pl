@@ -1,8 +1,8 @@
 Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 
-# clean-code-javascript
+# Czysty kod JavaScript
 
-## Table of Contents
+## Spis treści
   1. [Introduction](#introduction)
   2. [Variables](#variables)
   3. [Functions](#functions)
@@ -55,7 +55,7 @@ const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Use the same vocabulary for the same type of variable
 
@@ -70,7 +70,7 @@ getCustomerRecord();
 ```javascript
 getUser();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Use searchable names
 We will read more code than we will ever write. It's important that the code we
@@ -96,7 +96,7 @@ const MILLISECONDS_IN_A_DAY = 86400000;
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Use explanatory variables
 **Bad:**
@@ -113,7 +113,7 @@ const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid Mental Mapping
 Explicit is better than implicit.
@@ -144,7 +144,7 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
@@ -175,7 +175,7 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Use default arguments instead of short circuiting or conditionals
 Default arguments are often cleaner than short circuiting. Be aware that if you
@@ -199,7 +199,7 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 }
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **Functions**
 ### Function arguments (2 or fewer ideally)
@@ -250,7 +250,7 @@ createMenu({
   cancellable: true
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ### Functions should do one thing
@@ -285,7 +285,7 @@ function isActiveClient(client) {
   return clientRecord.isActive();
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Function names should say what they do
 
@@ -310,7 +310,7 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Functions should only be one level of abstraction
 When you have more than one level of abstraction your function is usually
@@ -378,7 +378,7 @@ function parseBetterJSAlternative(code) {
   });
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Remove duplicate code
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
@@ -462,7 +462,7 @@ function showEmployeeList(employees) {
   });
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Set default objects with Object.assign
 
@@ -508,7 +508,7 @@ function createMenu(config) {
 
 createMenu(menuConfig);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ### Don't use flags as function parameters
@@ -535,7 +535,7 @@ function createTempFile(name) {
   createFile(`./temp/${name}`);
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid Side Effects (part 1)
 A function produces a side effect if it does anything other than take a value in
@@ -580,7 +580,7 @@ const newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid Side Effects (part 2)
 In JavaScript, primitives are passed by value and objects/arrays are passed by
@@ -629,7 +629,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Don't write to global functions
 Polluting globals is a bad practice in JavaScript because you could clash with another
@@ -659,7 +659,7 @@ class SuperArray extends Array {
   }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Favor functional programming over imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
@@ -715,7 +715,7 @@ const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Encapsulate conditionals
 
@@ -736,7 +736,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid negative conditionals
 
@@ -761,7 +761,7 @@ if (isDOMNodePresent(node)) {
   // ...
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid conditionals
 This seems like an impossible task. Upon first hearing this, most people say,
@@ -817,7 +817,7 @@ class Cessna extends Airplane {
   }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid type-checking (part 1)
 JavaScript is untyped, which means your functions can take any type of argument.
@@ -842,7 +842,7 @@ function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid type-checking (part 2)
 If you are working with basic primitive values like strings, integers, and arrays,
@@ -873,7 +873,7 @@ function combine(val1, val2) {
   return val1 + val2;
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Don't over-optimize
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
@@ -898,7 +898,7 @@ for (let i = 0; i < list.length; i++) {
   // ...
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Remove dead code
 Dead code is just as bad as duplicate code. There's no reason to keep it in
@@ -929,7 +929,7 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **Objects and Data Structures**
 ### Use getters and setters
@@ -988,7 +988,7 @@ function makeBankAccount() {
 const account = makeBankAccount();
 account.setBalance(100);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ### Make objects have private members
@@ -1026,7 +1026,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ## **Classes**
@@ -1103,7 +1103,7 @@ class Human extends Mammal {
   speak() { /* ... */ }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ### Use method chaining
@@ -1186,7 +1186,7 @@ const car = new Car()
   .setModel('F-150')
   .save();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Prefer composition over inheritance
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
@@ -1252,7 +1252,7 @@ class Employee {
   // ...
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **SOLID**
 ### Single Responsibility Principle (SRP)
@@ -1310,7 +1310,7 @@ class UserSettings {
   }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Open/Closed Principle (OCP)
 As stated by Bertrand Meyer, "software entities (classes, modules, functions,
@@ -1397,7 +1397,7 @@ class HttpRequester {
   }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Liskov Substitution Principle (LSP)
 This is a scary term for a very simple concept. It's formally defined as "If S
@@ -1512,7 +1512,7 @@ function renderLargeShapes(shapes) {
 const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Interface Segregation Principle (ISP)
 JavaScript doesn't have interfaces so this principle doesn't apply as strictly
@@ -1587,7 +1587,7 @@ const $ = new DOMTraverser({
   }
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Dependency Inversion Principle (DIP)
 This principle states two essential things:
@@ -1682,7 +1682,7 @@ class InventoryRequesterV2 {
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **Testing**
 Testing is more important than shipping. If you have no tests or an
@@ -1749,7 +1749,7 @@ describe('MakeMomentJSGreatAgain', () => {
   });
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **Concurrency**
 ### Use Promises, not callbacks
@@ -1794,7 +1794,7 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   });
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Async/Await are even cleaner than Promises
 Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
@@ -1836,7 +1836,7 @@ async function getCleanCodeArticle() {
   }
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ## **Error Handling**
@@ -1909,7 +1909,7 @@ getdata()
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ## **Formatting**
@@ -1956,7 +1956,7 @@ function restoreDatabase() {}
 class Animal {}
 class Alpaca {}
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 
 ### Function callers and callees should be close
@@ -2042,7 +2042,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## **Comments**
 ### Only comment things that have business logic complexity.
@@ -2086,7 +2086,7 @@ function hashIt(data) {
 }
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Don't leave commented out code in your codebase
 Version control exists for a reason. Leave old code in your history.
@@ -2103,7 +2103,7 @@ doStuff();
 ```javascript
 doStuff();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Don't have journal comments
 Remember, use version control! There's no need for dead code, commented code,
@@ -2128,7 +2128,7 @@ function combine(a, b) {
   return a + b;
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ### Avoid positional markers
 They usually just add noise. Let the functions and variable names along with the
@@ -2163,7 +2163,7 @@ const actions = function() {
   // ...
 };
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
 
 ## Translation
 
@@ -2183,4 +2183,4 @@ This is also available in other languages:
   - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
   - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ powrót na początek](#spis-treści)**
