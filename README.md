@@ -4,7 +4,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 
 ## Spis treści
   1. [Wprowadzenie](#wprowadzenie)
-  2. [Variables](#variables)
+  2. [Zmienne](#zmienne)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
@@ -69,35 +69,43 @@ do ostatecznego kształtu. Wreszcie niczym rzeźbiarz dłutem usuwamy wszelkie n
 podczas przeglądu kodu wspólnie z kolegami. Nie zadręczaj się wstępnymi szkicami wymagającymi poprawek.
 Zamiast tego męcz kod!
 
+<!--
 ## **Variables**
 ### Use meaningful and pronounceable variable names
+-->
+## **Zmienne**
+### Używaj znaczących i wymawialnych nazw zmiennych
 
-**Bad:**
+**Źle:**
 ```javascript
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Use the same vocabulary for the same type of variable
+-->
+### Używaj tego samego słownictwa dla tego samego rodzaju danych
 
-**Bad:**
+**Źle:**
 ```javascript
 getUserInfo();
 getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 getUser();
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Use searchable names
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
@@ -106,17 +114,26 @@ Make your names searchable. Tools like
 [buddy.js](https://github.com/danielstjules/buddy.js) and
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
+-->
+### Używaj odnajdywalnych nazw
+Będziemy czytać więcej kodu, niż kiedykolwiek napiszemy. Ważnym jest, aby nasz kod
+był czytelny i przeszukiwalny. *Nie* nazywając zmiennych, mających znaczenie
+dla zrozumienia naszego programu, krzywdzimy czytających.
+Spraw, by Twoje nazwy były odnajdywalne. Narzędzia takie jak
+[buddy.js](https://github.com/danielstjules/buddy.js) i
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+mogą pomóc zidentyfikować nienazwane stałe.
 
-**Bad:**
+**Źle:**
 ```javascript
-// What the heck is 86400000 for?
+// Czym do diaska jest 86400000?
 setTimeout(blastOff, 86400000);
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
-// Declare them as capitalized `const` globals.
+// Zadeklaruj ją jako stałą globalną używając wielkich liter.
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
@@ -124,15 +141,19 @@ setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Use explanatory variables
-**Bad:**
+-->
+### Używaj zmiennych wyjaśniających
+
+**Źle:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
@@ -141,10 +162,14 @@ saveCityZipCode(city, zipCode);
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid Mental Mapping
 Explicit is better than implicit.
+-->
+### Unikaj map mentalnych
+Jasne jest lepsze niż niejasne.
 
-**Bad:**
+**Źle:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
@@ -153,12 +178,12 @@ locations.forEach((l) => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Czekaj, czym było `l`?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -172,11 +197,15 @@ locations.forEach((location) => {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
 variable name.
+-->
+### Nie dodawaj niepotrzebnego kontekstu
+Jeśli nazwa Twojej klasy/obiektu coś mówi, nie powtarzaj tego w nazwie zmiennej.
 
-**Bad:**
+**Źle:**
 ```javascript
 const Car = {
   carMake: 'Honda',
@@ -189,7 +218,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -203,13 +232,19 @@ function paintCar(car) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Use default arguments instead of short circuiting or conditionals
 Default arguments are often cleaner than short circuiting. Be aware that if you
 use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
+-->
+### Używaj domyślnych wartości argumentów zamiast wykonań warunkowych lub warunków
+Domyślne wartości argumentów są zwykle jaśniejsze niż wykonania warunkowe. Pamiętaj, że jeśli
+ich użyjesz, Twoja funkcja dostarczy domyślne wartości tylko dla argumentów niezdefiniowanych (`undefined`). Inne "fałszywe" wartości, takie jak `''`, `""`, `false`, `null`, `0` i
+`NaN`, nie będą zastąpione wartością domyślną.
 
-**Bad:**
+**Źle:**
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
@@ -218,7 +253,7 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
