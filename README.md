@@ -5,7 +5,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 ## Spis treści
   1. [Wprowadzenie](#wprowadzenie)
   2. [Zmienne](#zmienne)
-  3. [Functions](#functions)
+  3. [Funkcje](#funkcje)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
   6. [SOLID](#solid)
@@ -262,6 +262,7 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## **Functions**
 ### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
@@ -290,15 +291,44 @@ objects and arrays that are destructured from the argument object are NOT
 cloned.
 3. Linters can warn you about unused properties, which would be impossible
 without destructuring.
+-->
+## **Funkcje**
+### Parametry funkcji (najlepiej 2 lub mniej)
+Ograniczanie ilości parametrów funkcji jest niezwykle ważne, gdyż czyni
+testowanie Twojej funkcji prostszym. Mając więcej niż trzy, prowadzisz do
+eksplozji kombinatorycznej, w której musisz przetestować masę różnych przypadków
+osobno z każdym kolejnym parametrem.
 
-**Bad:**
+Najlepiej, jeśli jest jeden lub dwa parametry, trzy powinny być już w miarę możliwości unikane.
+Większa ilość powinna być skonsolidowana. Zwykle gdy masz
+więcej niż dwa parametry, Twoja funkcja próbuje zrobić za dużo. W przypadkach,
+gdy tak nie jest, zazwyczaj obiekt wyższego rzędu będzie wystarczającym
+parametrem.
+
+Jako że JavaScript pozwala tworzyć obiekty w locie i bez konieczności użycia kodu
+związanego z klasami, zawsze możesz użyć obiektu gdy czujesz, że potrzebujesz
+dużo parametrów.
+
+Aby było oczywistym jakich parametrów oczekuje funkcja, możesz użyć destrukturyzacji
+wprowadzonej w wersji ES2015/ES6. Ma to kilka zalet:
+
+1. Gdy ktoś popatrzy na sygnaturę funkcji, od razu będzie mieć jasność, jakie
+właściwości będą wykorzystywane.
+2. Destrukturyzacja klonuje określone prymitywne wartości argumentów obiektu
+przekazywanego do funkcji. Może to pomóc w uniknięciu efektów ubocznych. Uwaga:
+obiekty i tablice będące wynikiem destrukturyzacji argumentów obiektu NIE będą
+klonowane.
+3. Lintery mogą ostrzec Cię przed nieużywanymi zmiennymi, co będzie niemożliwe
+bez destrukturyzacji.
+
+**Źle:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
   // ...
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
   // ...
@@ -314,14 +344,22 @@ createMenu({
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ### Functions should do one thing
 This is by far the most important rule in software engineering. When functions
 do more than one thing, they are harder to compose, test, and reason about.
 When you can isolate a function to just one action, they can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
+-->
+### Funkcja powinna wykonywać tylko jedno zadanie
+Jest to zdecydowanie najważniejsza zasada w inżynierii oprogramowania. Gdy funkcje
+wykonują więcej niż jedno zadanie, są trudniejsze w kompozycji, testowaniu i zrozumieniu.
+Jeśli możesz ograniczyć działanie funkcji do tylko jednego zadania, będzie ona
+prostsza w refaktoryzacji, a Twój kod czytelniejszy. Nawet jeśli nie wyniesiesz
+z tego przewodnika nic więcej poza tym, to i tak będziesz do przodu w stosunku do wielu deweloperów.
 
-**Bad:**
+**Źle:**
 ```javascript
 function emailClients(clients) {
   clients.forEach((client) => {
@@ -333,7 +371,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function emailActiveClients(clients) {
   clients
@@ -348,9 +386,12 @@ function isActiveClient(client) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Function names should say what they do
+-->
+### Nazwy funkcji powinny mówić co one robią
 
-**Bad:**
+**Źle:**
 ```javascript
 function addToDate(date, month) {
   // ...
@@ -358,11 +399,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to to tell from the function name what is added
+// Z nazwy funkcji trudno wywnioskować, co jest dodawane
 addToDate(date, 1);
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -373,12 +414,17 @@ addMonthToDate(1, date);
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Functions should only be one level of abstraction
 When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
+-->
+### Funkcje powinny być tylko jednym poziomem abstrakcji
+Gdy masz więcej niż jeden poziom abstrakcji, Twoja funkcja zwykle robi za dużo.
+Podzielenie funkcji umożliwi wielokrotne użycie kodu i ułatwi jego testowanie.
 
-**Bad:**
+**Źle:**
 ```javascript
 function parseBetterJSAlternative(code) {
   const REGEXES = [
@@ -404,7 +450,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -441,6 +487,7 @@ function parseBetterJSAlternative(code) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Remove duplicate code
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
 means that there's more than one place to alter something if you need to change
@@ -462,8 +509,30 @@ SOLID principles laid out in the *Classes* section. Bad abstractions can be
 worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
+-->
+### Usuń powielony kod
+Rób wszystko, co tylko możesz, aby uniknąć powielania kodu. Powielony kod jest zły,
+gdyż oznacza, że jest więcej niż jedno miejsce do zmodyfikowania, gdy potrzebujesz zmienić
+trochę logiki.
 
-**Bad:**
+Wyobraź sobie, że prowadzisz restaurację i sprawujesz nadzór nad swoimi zapasami:
+wszystkie pomidory, cebule, czosnek, przyprawy itd. Jeśli masz je spisane w wielu miejscach,
+to wszystkie z nich muszą zostać uaktualnione, gdy serwujesz danie
+z pomidorami. Mając jedną listę, do uaktualnienia jest tylko jedno miejsce!
+
+Częstokroć powielasz kod, gdyż musisz rozwiązać dwa lub więcej nieznacznie różnych problemów,
+mających ze sobą wiele wspólnego, a ich różnice wymuszają na Tobie posiadanie
+dwóch lub więcej oddzielnych funkcji robiących wiele tego samego. Usunięcie
+powielonego kodu oznacza utworzenie abstrakcji, mogącej obsłużyć ten zestaw
+różnych problemów za pomocą tylko jednej funkcji/modułu/klasy.
+
+Poprawne użycie abstrakcji jest istotne, dlatego też powinieneś przestrzegać
+zasad SOLID, znajdujących się w rozdziale *Klasy*. Zła abstrakcja może być
+gorsza, niż powielony kod, bądź więc ostrożny! Jeśli możesz zastosować
+dobrą abstrakcję, zrób to! Nie powtarzaj się, w przeciwnym razie skończysz
+uaktualnianiając wiele miejsc za każdym razem, gdy chcesz zmienić jedną rzecz.
+
+**Źle:**
 ```javascript
 function showDeveloperList(developers) {
   developers.forEach((developer) => {
@@ -496,7 +565,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function showEmployeeList(employees) {
   employees.forEach((employee) => {
@@ -525,9 +594,12 @@ function showEmployeeList(employees) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Set default objects with Object.assign
+-->
+### Ustawiaj domyślne obiekty używając Object.assign
 
-**Bad:**
+**Źle:**
 ```javascript
 const menuConfig = {
   title: null,
@@ -546,11 +618,11 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const menuConfig = {
   title: 'Order',
-  // User did not include 'body' key
+  // Użytkownik nie uwzględnił klucza 'body'
   buttonText: 'Send',
   cancellable: true
 };
@@ -563,7 +635,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config ma teraz wartość: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -572,10 +644,14 @@ createMenu(menuConfig);
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ### Don't use flags as function parameters
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+-->
+### Nie używaj flag jako argumentów funkcji
+Flagi mówią użytkownikowi, że dana funkcja robi więcej niż jedną rzecz. Funkcje powinny robić jedną rzecz. Rozdziel swoje funkcje, jeśli ich kod podąża innymi ścieżkami zależnie od zmiennej boolowskiej.
 
-**Bad:**
+**Źle:**
 ```javascript
 function createFile(name, temp) {
   if (temp) {
@@ -586,7 +662,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function createFile(name) {
   fs.create(name);
@@ -598,6 +674,7 @@ function createTempFile(name) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid Side Effects (part 1)
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
@@ -613,11 +690,27 @@ The main point is to avoid common pitfalls like sharing state between objects
 without any structure, using mutable data types that can be written to by anything,
 and not centralizing where your side effects occur. If you can do this, you will
 be happier than the vast majority of other programmers.
+-->
+### Unikaj skutków ubocznych (część 1)
+Funkcja daje skutki uboczne, gdy robi cokolwiek innego niż pobranie jednej wartości
+i zwrócenie innej lub innych. Skutkiem ubocznym może być zapis do pliku,
+zmodyfikowanie jakiejś zmiennej globalnej, lub też przypadkowe przelanie wszystkich
+Twoich pieniędzy nieznajomemu.
 
-**Bad:**
+Czasem potrzebujesz skutków ubocznych w programie. Jak w poprzednim przykładzie
+możesz potrzebować zapisu do pliku. Tym, co chcesz zrobić, jest znalezienie jednego miejsca,
+gdzie go umieścisz. Nie miej kilku funkcji i klas które zapisują do poszczególnych plików.
+Miej jedną usługę, która to robi. Jedną i tylko jedną.
+
+Głowną kwestią jest unikanie powszechnych pułapek, takich jak dzielenie stanu między obiektami
+bez jakiejkolwiek struktury, użycie mutowalnych typów danych, do których wszystko może pisać
+i nie określenie jednego miejsca dającego skutki uboczne. Jeśli możesz to zrobić, będziesz szczęśliwszy,
+niż zdecydowana większość programistów.
+
+**Źle:**
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Globalna zmienna po której następuja funkcja, która się do niej odnosi
+// Jeśli będziemy mieć kolejną funckję używającą tej nazwy, teraz będzie ona tablicą i może spowodować błąd.
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -629,7 +722,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function splitIntoFirstAndLastName(name) {
   return name.split(' ');
@@ -643,6 +736,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid Side Effects (part 2)
 In JavaScript, primitives are passed by value and objects/arrays are passed by
 reference. In the case of objects and arrays, if your function makes a change
@@ -675,15 +769,47 @@ this isn't a big issue in practice because there are
 [great libraries](https://facebook.github.io/immutable-js/) that allow
 this kind of programming approach to be fast and not as memory intensive as
 it would be for you to manually clone objects and arrays.
+-->
+### Unikaj skutków ubocznych (część 2)
+W języku JavaScript typy proste przekazywane są przez wartość, a obiekty/tablice przez
+referencję. W przypadku obiektów i tablic, jeśli funkcja dokona zmiany
+w tablicy koszyka z zakupami, na przykład przez dodanie produktu,
+to inna funkcja używająca tej tablicy koszka `cart` będzie tą zmianą dotknięta.
+Może to być dobre, jednak może też być i złe. Wyobraź sobie złą sytuację:
 
-**Bad:**
+Użytkownik klika przycisk "Kup" wywołujący funkcję `purchase`, która tworzy
+żądanie i wysyła tablicę `cart` do serwera. Z powodu
+słabego połączenia sieciowego, funkcja `purchase` musi powtarzać żądanie.
+Co jeśli w międzyczasie użytkownik przypadkowo kliknie przycisk "Dodaj do koszyka"
+na produkcie, który nie był dodany wcześniej?
+Jeśli tak się wydarzy i żądanie zostanie wysłane, wtedy funkcja kupująca
+wyśle przypadkowo dodany produkt, gdyż posiada ona referencję do tablicy koszyka
+zakupów zmodyfikowaną przez funkcję `addItemToCart` poprzez dodanie niechcianego
+produktu.
+
+Świetnym rozwiązaniem byłoby, aby `addItemToCart` zawsze klonowała `cart`,
+edytowała i zwracała sklonowaną tablicę. To zapewnia, że żadna inna funkcja
+przechowująca referencję do koszyka zakupów będzie dotknięta jakąkolwiek zmianą.
+
+Dwa zastrzeżenia do tego podejścia:
+  1. Mogą występować przypadki, w których rzeczywiście chcesz zmodyfikować wejściowy obiekt,
+ale gdy zaczniesz stosować tę praktykę w programowaniu, przekonasz się, że są one
+dość rzadkie. Większość może być zrefaktoryzowana bez skutków ubocznych!
+
+  2. Klonowanie dużych obiektów może być kosztowne pod względem wydajności. Na szczęście
+w praktyce nie jest to duży problem, gdyż mamy
+[świetne biblioteki](https://facebook.github.io/immutable-js/) pozwalające
+takiemu podejściu do programowania być szybkim i nie obciążającym pamięci aż tak,
+jak by to było w przypadku ręcznego klonowania obiektów i tablic.
+
+**Źle:**
 ```javascript
 const addItemToCart = (cart, item) => {
   cart.push({ item, date: Date.now() });
 };
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const addItemToCart = (cart, item) => {
   return [...cart, { item, date : Date.now() }];
@@ -692,6 +818,7 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Don't write to global functions
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
@@ -702,8 +829,19 @@ to the `Array.prototype`, but it could clash with another library that tried
 to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+-->
+### Nie pisz do funkcji globalnych
+Zanieczyszcznie globalnej przestrzeni jest złą praktyką w języku JavaScript,
+gdyż możesz kolidować z inną biblioteką i użytkownik Twojego API może być niczego nieświadomym, dopóki wyjątek nie pojawi się na produkcji. Pomyślmy o takim przykładzie:
+co jeśli chciałbyś rozszerzyć natywny obiekt Array, aby miał metodę `diff`, która
+może pokazać różnicę między dwiema tablicami? Mógłbyś przypisać swoją nową funkcję
+do `Array.prototype`, ale może to kolidować z inną biblioteką, która próbowała
+zrobić to samo. Co jeśli inna biblioteka używała `diff` do znalezienia
+różnicy między pierwszym i ostatnim elementem tablicy? Własnie dlatego
+byłoby dużo lepiej używać po prostu klas wprowadzonych w wersji ES2015/ES6
+i zwyczajnie rozszerzyć globalną `Array`.
 
-**Bad:**
+**Źle:**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
   const hash = new Set(comparisonArray);
@@ -711,7 +849,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
@@ -722,12 +860,18 @@ class SuperArray extends Array {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Favor functional programming over imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
+-->
+### Przedkładaj programowanie funkcyjne nad programowanie imperatywne
+JavaScript nie jest językiem funkcyjnym w takim stopniu, jak Haskell, ale zawiera trochę
+funckyjnego aromatu. Języki funkcyjne są czystsze i prostsze w testowaniu.
+Preferuj ten styl programowania kiedy tylko możesz.
 
-**Bad:**
+**Źle:**
 ```javascript
 const programmerOutput = [
   {
@@ -752,7 +896,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const programmerOutput = [
   {
@@ -778,16 +922,19 @@ const totalOutput = programmerOutput
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Encapsulate conditionals
+-->
+### Stosuj hermetyzację warunków
 
-**Bad:**
+**Źle:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
   // ...
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
@@ -799,9 +946,12 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid negative conditionals
+-->
+### Unikaj negowania warunków
 
-**Bad:**
+**Źle:**
 ```javascript
 function isDOMNodeNotPresent(node) {
   // ...
@@ -812,7 +962,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function isDOMNodePresent(node) {
   // ...
@@ -824,6 +974,7 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid conditionals
 This seems like an impossible task. Upon first hearing this, most people say,
 "how am I supposed to do anything without an `if` statement?" The answer is that
@@ -833,8 +984,18 @@ answer is a previous clean code concept we learned: a function should only do
 one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
+-->
+### Unikaj warunków
+Wydaje się to być zadaniem niewykonalnym. Większość ludzi słysząc to pierwszy raz powie:
+"Jak mam zrobić cokolwiek bez instrukcji `if`?" Odpowiedzią jest, że
+możesz użyć polimorfizmu, aby osiągnąć to samo w wielu przypadkach. Drugim
+pytaniem jest zwykle: "Dobrze, to świetnie, ale dlaczego chciałbym to zrobić?"
+Odpowiedzią jest poprzednio poznana koncepcja czystego kodu: funkcja powinna robić
+tylko jedną rzecz. Gdy masz klasy i funkcje zawieracjące instrukcje `if`,
+mówisz użytkownikowi, że Twoja funkcja robi więcej, niż jedną rzecz. Pamiętaj,
+rób po prostu jedną rzecz.
 
-**Bad:**
+**Źle:**
 ```javascript
 class Airplane {
   // ...
@@ -851,7 +1012,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class Airplane {
   // ...
@@ -880,13 +1041,20 @@ class Cessna extends Airplane {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid type-checking (part 1)
 JavaScript is untyped, which means your functions can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
+-->
+### Unikaj sprawdzania typów (część 1)
+JavaScript jest typowany dynamicznie, co oznacza, że Twoje funkcje mogą przyjmować argumenty dowolnego typu.
+Czasami ta wolność jest uciążliwa i sprawdzanie typów w Twoich funkcjach
+okazuje się kuszące. Jest wiele sposobów, aby tego uniknąć.
+Pierwszym jest rozważenie zwartych API.
 
-**Bad:**
+**Źle:**
 ```javascript
 function travelToTexas(vehicle) {
   if (vehicle instanceof Bicycle) {
@@ -897,7 +1065,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
@@ -905,6 +1073,7 @@ function travelToTexas(vehicle) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid type-checking (part 2)
 If you are working with basic primitive values like strings, integers, and arrays,
 and you can't use polymorphism but you still feel the need to type-check,
@@ -915,8 +1084,19 @@ doing it well requires so much extra verbiage that the faux "type-safety" you ge
 doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
+-->
+### Unikaj sprawdzania typów (część 2)
+Jeśli pracujesz z podstawowymi wartościami jak ciągi znaków, liczby całkowite i tablice
+i nie możesz użyć polimorfizmu, a nadal czujesz potrzebę sprawdzania typów,
+powinieneś rozważyć użycie języka TypeScript. Jest on świetną alternatywą dla normalnego
+języka JavaScript, gdyż dostarcza statycznego typowania do jego standardowej składni.
+Problemem z ręcznym sprawdzaniem typów w normalnym JavaScript jest to, że używanie go
+poprawnie wymaga na tyle dużo dodatkowej rozwlekłości, iż otrzymane sztuczne bezpieczeństwo typologiczne
+nie wynagradza utraty czytelności. Utrzymuj Twój JavaScript czystym, pisz
+dobre testy i miej dobre przeglądy kodu. W przeciwnym razie, rób wszystko to samo,
+ale używając TypeScript (który, jak powiedziałem, jest świetną alternatywą!).
 
-**Bad:**
+**Źle:**
 ```javascript
 function combine(val1, val2) {
   if (typeof val1 === 'number' && typeof val2 === 'number' ||
@@ -928,7 +1108,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function combine(val1, val2) {
   return val1 + val2;
@@ -936,24 +1116,32 @@ function combine(val1, val2) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Don't over-optimize
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
 times, if you are optimizing then you are just wasting your time. [There are good
 resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
+-->
+### Nie optymalizuj nadmiernie
+Nowoczesne przeglądarki w czasie wykonania dokonują wielu optymalizacji "pod maską".
+Często gdy optymalizujesz, po prostu tracisz swój czas.
+[Tu są dobre źródła](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+pokazująca niedostatki optymalizacji. Postaw je sobie za cel w międzyczasie, dopóki nie będą
+poprawione, jeśli mogą być.
 
-**Bad:**
+**Źle:**
 ```javascript
 
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// W starych przeglądarkach każda iteracja z niebuforowanym `list.length` byłaby kosztowna
+// w związku z ponownym obliczeniem `list.length`. W nowoczesnych przeglądarkach jest to zoptymalizowane.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 for (let i = 0; i < list.length; i++) {
   // ...
@@ -961,12 +1149,18 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Remove dead code
 Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
+-->
+### Usuwaj martwy kod
+Martwy kod jest po prostu tak samo zły, jak powielony kod. Nie ma powodu, aby go trzymać.
+Jeśli nie będzie wywoływany, pozbądź się go! Będzie nadal bezpieczny
+w historii Twojego systemu wersjonowania, jeśli ciągle go potrzebujesz.
 
-**Bad:**
+**Źle:**
 ```javascript
 function oldRequestModule(url) {
   // ...
@@ -981,7 +1175,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function newRequestModule(url) {
   // ...
