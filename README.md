@@ -51,7 +51,8 @@ wykrzyczanych podczas czytania kodu](http://www.osnews.com/images/comics/wtfm.jp
 Zasady inżynierii oprogramowania z książki Roberta C. Martina
 [*Czysty kod*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 dostosowane do języka JavaScript. Nie są to wytyczne dotyczące stylu. To wytyczne do tworzenia
-czytelnego, prostego w refaktoryzacji i wielokrotnym użyciu oprogramowania w języku JavaScript.
+[czytelnego, prostego w refaktoryzacji i wielokrotnym użyciu](https://github.com/ryanmcdermott/3rs-of-software-architecture)
+oprogramowania w języku JavaScript.
 
 Nie każda z podanych tu zasad musi być ściśle przestrzegana i nie wszystkie z nich będą
 powszechnie przyjęte. To nic więcej, niż wskazówki zebrane dzięki wieloletniemu 
