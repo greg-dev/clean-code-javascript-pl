@@ -6,7 +6,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   1. [Wprowadzenie](#wprowadzenie)
   2. [Zmienne](#zmienne)
   3. [Funkcje](#funkcje)
-  4. [Objects and Data Structures](#objects-and-data-structures)
+  4. [Obiekty i struktury danych](#obiekty-i-struktury-danych)
   5. [Classes](#classes)
   6. [SOLID](#solid)
   7. [Testing](#testing)
@@ -1187,6 +1187,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## **Objects and Data Structures**
 ### Use getters and setters
 Using getters and setters to access data on objects could be better than simply
@@ -1200,9 +1201,22 @@ to look up and change every accessor in your codebase.
 * Easy to add logging and error handling when getting and setting.
 * You can lazy load your object's properties, let's say getting it from a
 server.
+-->
+## **Obiekty i struktury danych**
+### Używaj getterów i setterów
+Używanie getterów i setterów, aby uzyskać dostęp do danych obiektów, może być lepsze, niż zwykłe
+sprawdzanie właściwości obiektu. Możesz spytać: "Dlaczego?". Hmmm... oto niektóre
+z powodów:
 
+* Jeśli chcesz robić coś ponad pobieranie właściwości obiektu, nie musisz
+sprawdzać i zmieniać każdego akcesora w swoim kodzie.
+* Dodanie walidacji jest proste podczas wykonywania `set`.
+* Hermetyzuje wewnętrzną reprezentację.
+* Łatwo dodać logowanie i obsługę błędów podczas pobierania i ustawiania.
+* Możesz zastosować leniwe ładowanie właściwości Twojego obiektu, przykładowo, pobierając je
+z serwera.
 
-**Bad:**
+**Źle:**
 ```javascript
 function makeBankAccount() {
   // ...
@@ -1217,20 +1231,20 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // ta jest prywatna
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // "getter" udostępniony publicznie przez zwrócenie obiektu poniżej
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // "setter" udostępniony publicznie przez zwrócenie obiektu poniżej
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... walidacja przed uaktualnieniem zmiennej "balance"
     balance = amount;
   }
 
@@ -1247,10 +1261,14 @@ account.setBalance(100);
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ### Make objects have private members
 This can be accomplished through closures (for ES5 and below).
+-->
+### Używaj prywatnych właściwości i metod obiektów
+Można to osiągnąć dzięki domknięciom (dla wersji ES5 i niższych).
 
-**Bad:**
+**Źle:**
 ```javascript
 
 const Employee = function(name) {
@@ -1267,7 +1285,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function makeEmployee(name) {
   return {
