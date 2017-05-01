@@ -7,7 +7,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   2. [Zmienne](#zmienne)
   3. [Funkcje](#funkcje)
   4. [Obiekty i struktury danych](#obiekty-i-struktury-danych)
-  5. [Classes](#classes)
+  5. [Klasy](#klasy)
   6. [SOLID](#solid)
   7. [Testing](#testing)
   8. [Concurrency](#concurrency)
@@ -241,7 +241,7 @@ arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 -->
 ### Używaj domyślnych wartości argumentów zamiast wykonań warunkowych lub warunków
-Domyślne wartości argumentów są zwykle jaśniejsze niż wykonania warunkowe. Pamiętaj, że jeśli
+Domyślne wartości argumentów są zwykle jaśniejsze niż wykonania warunkowe. Pamiętaj, ��e jeśli
 ich użyjesz, Twoja funkcja dostarczy domyślne wartości tylko dla argumentów niezdefiniowanych (`undefined`). Inne "fałszywe" wartości, takie jak `''`, `""`, `false`, `null`, `0` i
 `NaN`, nie będą zastąpione wartością domyślną.
 
@@ -1303,14 +1303,22 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ## **Classes**
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
+-->
+## **Klasy**
+### Przedkładaj klasy wprowadzone w ES2015/ES6 ponad proste funkcje jak w ES5
+Trudno uzyskać czytelne dziedziczenie, konstrukcję i definicje metod
+klasycznymi technikami dostępnymi w ES5. Gdy potrzebujesz dziedziczenia (a bądź świadom,
+że może nie musisz), wykorzystuj klasy wprowadzone w ES2015/ES6. Niemniej jednak, przedkładaj małe funkcje ponad
+klasy, dopóki nie będziesz potrzebował większych i bardziej złożonych obiektów.
 
-**Bad:**
+**Źle:**
 ```javascript
 const Animal = function(age) {
   if (!(this instanceof Animal)) {
@@ -1349,7 +1357,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class Animal {
   constructor(age) {
@@ -1380,14 +1388,22 @@ class Human extends Mammal {
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ### Use method chaining
 This pattern is very useful in JavaScript and you see it in many libraries such
 as jQuery and Lodash. It allows your code to be expressive, and less verbose.
 For that reason, I say, use method chaining and take a look at how clean your code
 will be. In your class functions, simply return `this` at the end of every function,
 and you can chain further class methods onto it.
+-->
+### Wykorzystuj łańcuchowanie metod
+Wzorzec ten jest bardzo przydatny w języku JavaScript i widać to w wielu bibliotekach takich jak
+jQuery i Lodash. Pozwala on uzyskać kod ekspresywny i mniej rozwlekły.
+W związku z tym mówię - użyj łańcuchowania metod i popatrz jak czysty będzie Twój kod.
+W funkcjach Twoich klas zwyczajnie zwracaj `this` na końcu każdej funkcji
+i będziesz mógł doczepić do nich (jak ogniwa łańcucha) inne metody klasy.
 
-**Bad:**
+**Źle:**
 ```javascript
 class Car {
   constructor() {
@@ -1420,7 +1436,7 @@ car.setModel('F-150');
 car.save();
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class Car {
   constructor() {
@@ -1431,25 +1447,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // ZAUWAŻ: Zwracamy this dla łańcuchowania
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // ZAUWAŻ: Zwracamy this dla łańcuchowania
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // ZAUWAŻ: Zwracamy this dla łańcuchowania
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // ZAUWAŻ: Zwracamy this dla łańcuchowania
     return this;
   }
 }
@@ -1462,6 +1478,7 @@ const car = new Car()
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Prefer composition over inheritance
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
@@ -1479,8 +1496,26 @@ relationship (Human->Animal vs. User->UserDetails).
 2. You can reuse code from the base classes (Humans can move like all animals).
 3. You want to make global changes to derived classes by changing a base class.
 (Change the caloric expenditure of all animals when they move).
+-->
+### Przedkładaj kompozycję ponad dziedziczenie
+Jak stwierdzono głośno we [*Wzorcach projektowych*](https://en.wikipedia.org/wiki/Design_Patterns) Bandy Czterech,
+powinieneś przedkładać kompozycję ponad dziedziczenie tam, gdzie tylko możesz. Jest wiele
+dobrych powodów, aby używać dziedziczenia i wiele dobrych powodów, aby używać kompozycji.
+Głównym punktem tej maksymy jest, aby gdy w myślach instynktownie skłaniasz się
+ku dziedziczeniu, próbować zastanowić się, czy kompozycja może odwzorować problem lepiej.
+W niektórych przypadkach może.
 
-**Bad:**
+Możesz się zastanawiać: "kiedy powinienem użyć dziedziczenia?". To zależy
+od Twojego problemu, ale tu jest skromna lista przypadków, gdy dziedziczenie
+ma więcej sensu niż kompozycja:
+
+1. Twoje dziedziczenie reprezentuje relację "x-jest-y" a nie "x-posiada-y"
+(Człowiek->Zwierzę kontra Użytkownik->SzczegółyUżytkownika).
+2. Możesz wykorzystać ponownie kod ze zbioru swoich klas (Ludzie mogą poruszać się jak wszystkie zwierzęta).
+3. Chcesz dokonać globalnych zmian w klasach pochodnych zmieniając klasę podstawową.
+(Zmienić zużycie kalorii podczas poruszania dla wszystkich zwierząt).
+
+**Źle:**
 ```javascript
 class Employee {
   constructor(name, email) {
@@ -1491,7 +1526,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Źle, gdyż Pracownicy "posiadają" dane podatkowe. DanePodatkowePracownika nie są typem Pracownika
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1503,7 +1538,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class EmployeeTaxData {
   constructor(ssn, salary) {
