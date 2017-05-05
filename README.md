@@ -1564,6 +1564,7 @@ class Employee {
 **[⬆ powrót na początek](#spis-treści)**
 
 ## **SOLID**
+<!--
 ### Single Responsibility Principle (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
@@ -1573,8 +1574,17 @@ to change. Minimizing the amount of times you need to change a class is importan
 It's important because if too much functionality is in one class and you modify
 a piece of it, it can be difficult to understand how that will affect other
 dependent modules in your codebase.
+-->
+### Zasada jednej odpowiedzialności (SRP)
+Jak stwierdzono w Czystym Kodzie, "Nigdy nie powinno być więcej niż jednego powodu do modyfikacji klasy". Kuszącym jest zapakowanie w klasę wielu funkcjonalności, tak jak wtedy,
+gdy możesz zabrać tylko jedną walizkę podczas lotu. Problemem jest tutaj to,
+że Twoja klasa nie będzie koncepcyjnie spójna i da jej to wiele powodów
+do zmian. Minimalizacja ilości sytuacji, w których musisz zmienić klasę, jest istotna.
+Jest istotna, gdyż jeśli jedna klasa zawiera zbyt dużo funkcjonalności i modyfikujesz
+część z nich, może stać się trudnym do zrozumienia jak wpłynie to na inne
+zależne moduły w Twoim kodzie.
 
-**Bad:**
+**Źle:**
 ```javascript
 class UserSettings {
   constructor(user) {
@@ -1593,7 +1603,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class UserAuth {
   constructor(user) {
@@ -1621,13 +1631,20 @@ class UserSettings {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Open/Closed Principle (OCP)
 As stated by Bertrand Meyer, "software entities (classes, modules, functions,
 etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
+-->
+### Zasada otwarte-zamknięte (OCP)
+Jak stwierdził Bertrand Meyer, "Encje (klasy, moduły, funkcje itd.)
+powinny być otwarte na rozszerzenie, ale zamknięte na modyfikacje". Co więc
+to oznacza? Ta zasada po prostu stwierdza, że powinieneś umożliwić użytkownikom
+dodanie nowych funkcjonalności bez zmiany istniejącego kodu.
 
-**Bad:**
+**Źle:**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1651,26 +1668,26 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === 'ajaxAdapter') {
       return makeAjaxCall(url).then((response) => {
-        // transform response and return
+        // przekształć odpowiedź i zwróć
       });
     } else if (this.adapter.name === 'httpNodeAdapter') {
       return makeHttpCall(url).then((response) => {
-        // transform response and return
+        // przekształć odpowiedź i zwróć
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // żądanie i zwrócenie obietnicy
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // żądanie i zwrócenie obietnicy
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1679,7 +1696,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // żądanie i zwrócenie obietnicy
   }
 }
 
@@ -1690,7 +1707,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // żądanie i zwrócenie obietnicy
   }
 }
 
@@ -1701,13 +1718,14 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then((response) => {
-      // transform response and return
+      // przekształć odpowiedź i zwróć
     });
   }
 }
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Liskov Substitution Principle (LSP)
 This is a scary term for a very simple concept. It's formally defined as "If S
 is a subtype of T, then objects of type T may be replaced with objects of type S
@@ -1721,8 +1739,22 @@ incorrect results. This might still be confusing, so let's take a look at the
 classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
+-->
+### Zasada podstawienia Liskov (LSP)
+Jest to przerażająca nazwa dla bardzo prostego konceptu. Jest formalnie zdefiniowana jako "Jeśli S
+jest podtypem T, wtedy obiekty typu T mogą być wymienione z obiektami typu S
+(np. obiekty typu S mogą zastąpić obiekty typu T) bez zmieniania żadnych
+pożądanych właściwości tego programu (poprawność, zadanie wykonane,
+itd.)". To jeszcze bardziej przerażająca definicja.
 
-**Bad:**
+Najlepszym wyjaśnieniem tego będzie jeśli masz klasę bazową i klasę potomną,
+wtedy klasy bazowa i potomna mogą zostać użyte wymiennie bez otrzymania
+niepoprawnych wyników. Może to być nadal pogmatwane, spójrzmy więc na
+klasyczny przykład: Kwadrat-Prostokąt. Matematycznie kwadrat jest prostokątem, ale
+jeśli modelujesz to używając relacji "x-jest-y" przez dziedziczenie, szybko
+wpadniesz w kłopoty.
+
+**Źle:**
 ```javascript
 class Rectangle {
   constructor() {
@@ -1767,7 +1799,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // ŹLE: Zwraca 25 dla Kwadratu. Powinno być 20
     rectangle.render(area);
   });
 }
@@ -1776,7 +1808,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class Shape {
   setColor(color) {
@@ -1823,6 +1855,7 @@ renderLargeShapes(shapes);
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Interface Segregation Principle (ISP)
 JavaScript doesn't have interfaces so this principle doesn't apply as strictly
 as others. However, it's important and relevant even with JavaScript's lack of
@@ -1837,8 +1870,22 @@ classes that require large settings objects. Not requiring clients to setup
 huge amounts of options is beneficial, because most of the time they won't need
 all of the settings. Making them optional helps prevent having a
 "fat interface".
+-->
+### Zasada segregacji interfejsów (ISP)
+JavaScript nie posiada interfejsów, więc ta zasada nie ma tu tak restrykcyjnego zastosowania
+jak pozostałe. Mimo tego jest ważna i istotna nawet przy braku typowania w JavaScript.
 
-**Bad:**
+ISP stwierdza, że "Na klientach nie powinna być wymuszana zależność od interfejsów,
+których oni nie używają". Interfejsy w JavaScript są niejawnymi kontraktami przez
+kacze typowanie.
+
+Dobrym przykładem demonstrującym tę zasadę w JavaScript są klasy,
+które wymagają dużych obiektów z opcjami. Nie wymaganie od klientów instalowania
+ogromnych ilości ustawień jest korzystne, gdyż przez większość czasu nie będą oni potrzebować
+wszystkich tych ustawień. Uczynienie ich opcjonalnymi pomoże zapobiec otrzymaniu
+"grubego interfejsu".
+
+**Źle:**
 ```javascript
 class DOMTraverser {
   constructor(settings) {
@@ -1858,13 +1905,13 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // W większości przypadków nie będziemy musieli animować podczas trawersowania.
   // ...
 });
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class DOMTraverser {
   constructor(settings) {
@@ -1898,6 +1945,7 @@ const $ = new DOMTraverser({
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Dependency Inversion Principle (DIP)
 This principle states two essential things:
 1. High-level modules should not depend on low-level modules. Both should
@@ -1918,8 +1966,29 @@ that are depended upon are implicit contracts. That is to say, the methods
 and properties that an object/class exposes to another object/class. In the
 example below, the implicit contract is that any Request module for an
 `InventoryTracker` will have a `requestItems` method.
+-->
+### Zasada odwrócenia zależności (DIP)
+Ta zasada określa dwie istotne rzeczy:
+1. Wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych. Jedne i drugie
+powinny zależeć od abstrakcji.
+2. Abstrakcje nie powinny zależeć od szczegółów. Szczegóły powinny zależeć
+od abstrakcji.
 
-**Bad:**
+Z początku może to być trudne do zrozumienia, ale jeśli pracowałeś z AngularJS,
+widziałeś implementację tej zasady w formie Wstrzykiwania zależności (DI).
+Podczas gdy nie są one identycznymi pojęciami, Zasada odwrócenia zależności trzyma wysokopoziomowe
+moduły z dala od wiedzy na temat szczegółów ich niskopoziomowych modułów i ich ustawiania.
+Może to być osiągnięte dzięki Wstrzykiwaniu zależności. Ogromną korzyścią jest, iż redukuje to
+zależności między modułami. Zależność jest bardzo złym wzorcem, gdyż
+czyni Twój kod trudniejszym do zrefaktoryzowania.
+
+Jak wcześniej zaznaczono, JavaScript nie posiada interfejsów, więc abstrakcje
+będące zależnymi, są niejawnymi kontraktami. Oznacza to metody
+i właściwości, które obiekt/klasa wystawia dla innego obiektu/klasy.
+W przykładzie poniżej niejawnym kontraktem jest to, że dowolny moduł Request dla
+`InventoryTracker` będzie posiadał metodę `requestItems`.
+
+**Źle:**
 ```javascript
 class InventoryRequester {
   constructor() {
@@ -1935,8 +2004,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // ŹLE: Utworzyliśmy zależność od specyficznej implementacji żądania.
+    // Powinniśmy po prostu uczynić requestItems zależnym od metody: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1951,7 +2020,7 @@ const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class InventoryTracker {
   constructor(items, requester) {
@@ -1986,8 +2055,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Przez skonstruowanie naszych zależności na zewnątrz i wstrzyknięcie ich, możemy łatwo
+// zastąpić nasz moduł żądania nowym, fantazyjnym, używającym WebSockets.
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
