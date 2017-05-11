@@ -9,7 +9,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   4. [Obiekty i struktury danych](#obiekty-i-struktury-danych)
   5. [Klasy](#klasy)
   6. [SOLID](#solid)
-  7. [Testing](#testing)
+  7. [Testowanie](#testowanie)
   8. [Concurrency](#concurrency)
   9. [Error Handling](#error-handling)
   10. [Formatting](#formatting)
@@ -2062,6 +2062,7 @@ inventoryTracker.requestItems();
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## **Testing**
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
@@ -2077,10 +2078,29 @@ for every new feature/module you introduce. If your preferred method is
 Test Driven Development (TDD), that is great, but the main point is to just
 make sure you are reaching your coverage goals before launching any feature,
 or refactoring an existing one.
+-->
+## **Testowanie**
+Testowanie jest ważniejsze niż dostarczanie. Jeśli nie masz testów albo jest ich
+nieodpowiednia ilość, to za każdym razem dostarczając swój kod nie będziesz pewnym,
+że czegoś nie popsułeś. Decyzja o tym, jaka ilość testów jest odpowienia, należy
+do Twojego zespołu, ale pokrycie w 100% (wszystkie instrukcje i gałęzie) jest tym,
+co pozwoli osiągnąć wysoką pewność i święty spokój dewelopera. Oznacza to, że
+jako dodatek do posiadanego świetnego frameworka do testowania, musisz jeszcze użyć
+[dobrego narzędzia pokrycia](http://gotwarlost.github.io/istanbul/).
 
+Nie ma usprawiedliwienia dla nie pisania testów. Jest [mnóstwo dobrych frameworków testowych] (http://jstherightway.org/#testing-tools), znajdź więc ten, który Twój zespół preferuje.
+Kiedy go znajdziesz, wtedy postaw sobie za cel, aby zawsze pisać testy
+dla każdej nowej funkcjonalności/modułu, który wprowadzasz. Jeśli preferowaną przez Ciebie metodą jest
+Test Driven Development (TDD), to świetnie, ale istotą jest po prostu
+upewnienie się, że osiągasz swoje cele dotyczące pokrycia przed wypuszczeniem jakiejkolwiek funkcjonalności
+albo refaktoryzacji już istniejącej.
+
+<!--
 ### Single concept per test
+-->
+### Pojedynczy pomysł na test
 
-**Bad:**
+**Źle:**
 ```javascript
 import assert from 'assert';
 
@@ -2103,7 +2123,7 @@ describe('MakeMomentJSGreatAgain', () => {
 });
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 import assert from 'assert';
 
