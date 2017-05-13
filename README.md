@@ -10,7 +10,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   5. [Klasy](#klasy)
   6. [SOLID](#solid)
   7. [Testowanie](#testowanie)
-  8. [Concurrency](#concurrency)
+  8. [Współbieżność](#współbieżność)
   9. [Error Handling](#error-handling)
   10. [Formatting](#formatting)
   11. [Comments](#comments)
@@ -2149,12 +2149,18 @@ describe('MakeMomentJSGreatAgain', () => {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## **Concurrency**
 ### Use Promises, not callbacks
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
+-->
+## **Współbieżność**
+### Używaj Obietnic, a nie wywołań zwrotnych
+Wywołania zwrotne nie są czyste i powodują nadmierne ilości zagnieżdżeń.
+W ES2015/ES6 Obietnice są wbudowanym, globalnym typem. Używaj ich!
 
-**Bad:**
+**Źle:**
 ```javascript
 import { get } from 'request';
 import { writeFile } from 'fs';
@@ -2175,7 +2181,7 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) 
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 import { get } from 'request';
 import { writeFile } from 'fs';
@@ -2194,14 +2200,22 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Async/Await are even cleaner than Promises
 Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
 which offer an even cleaner solution. All you need is a function that is prefixed
 in an `async` keyword, and then you can write your logic imperatively without
 a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
+-->
+### Async/Await są jeszcze bardziej czyste niż Obietnice
+Obietnice są bardzo czystą alternatywą dla wywołań zwrotnych, ale ES2017/ES8
+wprowadza async i await, które oferują jeszcze czystsze rozwiązanie.
+Wszystkim, czego potrzebujesz, jest funkcja poprzedzona słowem kluczowym
+`async` i wtedy możesz pisać swoją logikę imperatywnie bez łańcucha funkcji
+z `then`. Używaj tego, jeśli możesz skorzystać z funkcjonalności ES2017/ES8 już dziś!
 
-**Bad:**
+**Źle:**
 ```javascript
 import { get } from 'request-promise';
 import { writeFile } from 'fs-promise';
@@ -2219,7 +2233,7 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 import { get } from 'request-promise';
 import { writeFile } from 'fs-promise';
