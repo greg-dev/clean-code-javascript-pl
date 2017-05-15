@@ -14,7 +14,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   9. [Obsługa błędów](#obsługa-błędów)
   10. [Formatowanie](#formatowanie)
   11. [Komentarze](#komentarze)
-  12. [Translation](#translation)
+  12. [Tłumaczenie](#tłumaczenie)
 
 <!--
 ## Introduction
@@ -2637,9 +2637,14 @@ const actions = function() {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## Translation
 
 This is also available in other languages:
+-->
+## Tłumaczenie
+
+Ten dokument dostępny jest również w innych językach:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
