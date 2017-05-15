@@ -13,7 +13,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   8. [Współbieżność](#współbieżność)
   9. [Obsługa błędów](#obsługa-błędów)
   10. [Formatowanie](#formatowanie)
-  11. [Comments](#comments)
+  11. [Komentarze](#komentarze)
   12. [Translation](#translation)
 
 <!--
@@ -2497,32 +2497,37 @@ review.perfReview();
 
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ## **Comments**
 ### Only comment things that have business logic complexity.
 Comments are an apology, not a requirement. Good code *mostly* documents itself.
+-->
+## **Komentarze**
+### Komentuj tylko rzeczy mające złożoną logikę biznesową.
+Komentarze są przeprosinami, nie wymogiem. Dobry kod *przeważnie* dokumentuje się sam.
 
-**Bad:**
+**Źle:**
 ```javascript
 function hashIt(data) {
-  // The hash
+  // Hash
   let hash = 0;
 
-  // Length of string
+  // Długość łańcucha znaków
   const length = data.length;
 
-  // Loop through every character in data
+  // Pętla po literach w zmiennej data
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // Pobierz kod litery.
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Utwórz hash
     hash = ((hash << 5) - hash) + char;
-    // Convert to 32-bit integer
+    // Przekonwertuj na liczbę 32-bitową
     hash &= hash;
   }
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 
 function hashIt(data) {
@@ -2533,7 +2538,7 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
-    // Convert to 32-bit integer
+    // Przekonwertuj na liczbę 32-bitową
     hash &= hash;
   }
 }
@@ -2541,10 +2546,14 @@ function hashIt(data) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Don't leave commented out code in your codebase
 Version control exists for a reason. Leave old code in your history.
+-->
+### ### Nie pozostawiaj zakomentowanego kodu
+Kontrola wersji istnieje nie bez powodu. Pozostaw stary kod w Twojej historii.
 
-**Bad:**
+**Źle:**
 ```javascript
 doStuff();
 // doOtherStuff();
@@ -2552,30 +2561,35 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 doStuff();
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Don't have journal comments
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
+-->
+### Nie twórz komentarzy - dziennika.
+Pamiętaj, używaj kontroli wersji! Nie jest potrzebny martwy kod, zakomentowany kod
+i przede wszystkim komentarze będące dziennikiem. Używaj `git log` by sprawdzić historię!
 
-**Bad:**
+**Źle:**
 ```javascript
 /**
- * 2016-12-20: Removed monads, didn't understand them (RM)
- * 2016-10-01: Improved using special monads (JP)
- * 2016-02-03: Removed type-checking (LI)
- * 2015-03-14: Added combine with type-checking (JR)
+ * 2016-12-20: Usunąłem monady, nie rozumiałem ich (RM)
+ * 2016-10-01: Ulepszyłem użycie specjalnych monad (JP)
+ * 2016-02-03: Usunąłem sprawdzanie typów (LI)
+ * 2015-03-14: Dodałem funkcję combine ze sprawdzaniem typów (JR)
  */
 function combine(a, b) {
   return a + b;
 }
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 function combine(a, b) {
   return a + b;
@@ -2583,11 +2597,16 @@ function combine(a, b) {
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
+<!--
 ### Avoid positional markers
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
+-->
+### Unikaj markerów pozycyjnych
+Zwykle dodają one tylko szum. Pozwól funkcjom i nazwom zmiennych wraz z poprawnymi
+wcięciami i formatowaniem dać wizualną strukturę Twojemu kodowi.
 
-**Bad:**
+**Źle:**
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
@@ -2605,7 +2624,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 $scope.model = {
   menu: 'foo',
