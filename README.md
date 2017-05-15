@@ -12,7 +12,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   7. [Testowanie](#testowanie)
   8. [Współbieżność](#współbieżność)
   9. [Obsługa błędów](#obsługa-błędów)
-  10. [Formatting](#formatting)
+  10. [Formatowanie](#formatowanie)
   11. [Comments](#comments)
   12. [Translation](#translation)
 
@@ -2342,7 +2342,7 @@ getdata()
 
 **[⬆ powrót na początek](#spis-treści)**
 
-
+<!--
 ## **Formatting**
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
@@ -2357,8 +2357,24 @@ for some guidance.
 JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
+-->
+## **Formatowanie**
+Formatowanie jest subiektywne. Jak w wielu innych tu przypadkach, nie ma sztywnej i szybkiej
+zasady, którą musisz przyjąć. Najważniejsze, abyś NIE SPIERAŁ SIĘ o formatowanie.
+Są [tony narzędzi](http://standardjs.com/rules.html) by to zautomatyzować.
+Użyj jednego! Spieranie się o formatowanie jest stratą czasu i pieniędzy
+dla inżynierów.
 
-**Bad:**
+W sprawach, które nie są objęte automatycznym formatowaniem
+(wcięcia, tabulacje kontra spacje, podwójne kontra pojedyncze cudzysłowy, itd.) zaglądnij tu
+po trochę wskazówek.
+
+### Używaj wielkich liter konsekwentnie
+JavaScript jest typowany dynamicznie, więc wielkie litery powiedzą Ci dużo o Twoich
+zmiennych, funkcjach itd. Te zasady są subiektywne, więc Twój zespół może wybrać
+cokolwiek chce. Chodzi o to, żebyś bez względu na to, co wybierzecie, był konsekwentnym.
+
+**Źle:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const daysInMonth = 30;
@@ -2373,7 +2389,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
@@ -2390,12 +2406,18 @@ class Alpaca {}
 **[⬆ powrót na początek](#spis-treści)**
 
 
+<!--
 ### Function callers and callees should be close
 If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
+-->
+### Wywołanie funkcji i wywołana funkcja powinny być blisko siebie
+Jeśli funkcja wywołuje inną, trzymaj te funkcje wertykalnie blisko w pliku źródłowym.
+Najlepiej umieść wywołanie zaraz powyżej wywołanej. Mamy tendencję do czytania kodu
+z góry na dół, jak gazetę. Dlatego też spraw, aby Twój kod był czytany w ten sposób.
 
-**Bad:**
+**Źle:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2434,7 +2456,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Dobrze:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
