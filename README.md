@@ -209,7 +209,8 @@ Jeśli nazwa Twojej klasy/obiektu coś mówi, nie powtarzaj tego w nazwie zmienn
 **Źle:**
 ```javascript
 const Car = {
-  carMake: 'Honda',
+  carMake: '
+  ',
   carModel: 'Accord',
   carColor: 'Blue'
 };
@@ -1407,9 +1408,9 @@ i będziesz mógł doczepić do nich (jak ogniwa łańcucha) inne metody klasy.
 ```javascript
 class Car {
   constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
+    this.make = '';
+    this.model = '';
+    this.color = '';
   }
 
   setMake(make) {
@@ -1440,9 +1441,9 @@ car.save();
 ```javascript
 class Car {
   constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
+    this.make = '';
+    this.model = '';
+    this.color = '';
   }
 
   setMake(make) {
@@ -2394,8 +2395,8 @@ class Alpaca {}
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
 
-const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-const artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+const SONGS = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const ARTISTS = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restoreDatabase() {}
