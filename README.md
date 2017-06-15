@@ -241,7 +241,7 @@ arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 -->
 ### Używaj domyślnych wartości argumentów zamiast wykonań warunkowych lub warunków
-Domyślne wartości argumentów są zwykle jaśniejsze niż wykonania warunkowe. Pamiętaj, ��e jeśli
+Domyślne wartości argumentów są zwykle jaśniejsze niż wykonania warunkowe. Pamiętaj, że jeśli
 ich użyjesz, Twoja funkcja dostarczy domyślne wartości tylko dla argumentów niezdefiniowanych (`undefined`). Inne "fałszywe" wartości, takie jak `''`, `""`, `false`, `null`, `0` i
 `NaN`, nie będą zastąpione wartością domyślną.
 
