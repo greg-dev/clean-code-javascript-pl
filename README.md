@@ -59,7 +59,7 @@ powszechnie przyjęte. To nic więcej, niż wskazówki zebrane dzięki wieloletn
 doświadczeniu autorów *Czystego kodu*.
 
 Inżynieria oprogramowania ma trochę ponad 50 lat i nadal wiele się uczymy.
-Gdy architektura oprogramowania będzie tak stara jak sama architektura,
+Gdy architektura oprogramowania będzie tak stara, jak sama architektura,
 wtedy może będziemy mieli trudniejsze zasady do przestrzegania. Na razie niech te
 wytyczne służą jako podstawa do oceny jakości kodu JavaScript, który Ty i Twój zespół tworzycie.
 
@@ -117,7 +117,7 @@ Make your names searchable. Tools like
 can help identify unnamed constants.
 -->
 ### Używaj odnajdywalnych nazw
-Będziemy czytać więcej kodu, niż kiedykolwiek napiszemy. Ważnym jest, aby nasz kod
+Będziemy czytać więcej kodu, niż kiedykolwiek napiszemy. Ważne jest, aby nasz kod
 był czytelny i przeszukiwalny. *Nie* nazywając zmiennych, mających znaczenie
 dla zrozumienia naszego programu, krzywdzimy czytających.
 Spraw, by Twoje nazwy były odnajdywalne. Narzędzia takie jak
@@ -301,16 +301,16 @@ eksplozji kombinatorycznej, w której musisz przetestować masę różnych przyp
 osobno z każdym kolejnym parametrem.
 
 Najlepiej, jeśli jest jeden lub dwa parametry, trzy powinny być już w miarę możliwości unikane.
-Większa ilość powinna być skonsolidowana. Zwykle gdy masz
+Większa ilość powinna być skonsolidowana. Zwykle, gdy masz
 więcej niż dwa parametry, Twoja funkcja próbuje zrobić za dużo. W przypadkach,
 gdy tak nie jest, zazwyczaj obiekt wyższego rzędu będzie wystarczającym
 parametrem.
 
 Jako że JavaScript pozwala tworzyć obiekty w locie i bez konieczności użycia kodu
-związanego z klasami, zawsze możesz użyć obiektu gdy czujesz, że potrzebujesz
+związanego z klasami, zawsze możesz użyć obiektu, gdy czujesz, że potrzebujesz
 dużo parametrów.
 
-Aby było oczywistym jakich parametrów oczekuje funkcja, możesz użyć destrukturyzacji
+Aby było oczywistym, jakich parametrów oczekuje funkcja, możesz użyć destrukturyzacji
 wprowadzonej w wersji ES2015/ES6. Ma to kilka zalet:
 
 1. Gdy ktoś popatrzy na sygnaturę funkcji, od razu będzie mieć jasność, jakie
@@ -531,7 +531,7 @@ Poprawne użycie abstrakcji jest istotne, dlatego też powinieneś przestrzegać
 zasad SOLID, znajdujących się w rozdziale *Klasy*. Zła abstrakcja może być
 gorsza, niż powielony kod, bądź więc ostrożny! Jeśli możesz zastosować
 dobrą abstrakcję, zrób to! Nie powtarzaj się, w przeciwnym razie skończysz
-uaktualnianiając wiele miejsc za każdym razem, gdy chcesz zmienić jedną rzecz.
+uaktualniając wiele miejsc za każdym razem, gdy chcesz zmienić jedną rzecz.
 
 **Źle:**
 ```javascript
@@ -700,12 +700,12 @@ Twoich pieniędzy nieznajomemu.
 
 Czasem potrzebujesz skutków ubocznych w programie. Jak w poprzednim przykładzie
 możesz potrzebować zapisu do pliku. Tym, co chcesz zrobić, jest znalezienie jednego miejsca,
-gdzie go umieścisz. Nie miej kilku funkcji i klas które zapisują do poszczególnych plików.
+gdzie go umieścisz. Nie miej kilku funkcji i klas, które zapisują do poszczególnych plików.
 Miej jedną usługę, która to robi. Jedną i tylko jedną.
 
-Głowną kwestią jest unikanie powszechnych pułapek, takich jak dzielenie stanu między obiektami
+Główną kwestią jest unikanie powszechnych pułapek, takich jak dzielenie stanu między obiektami
 bez jakiejkolwiek struktury, użycie mutowalnych typów danych, do których wszystko może pisać
-i nie określenie jednego miejsca dającego skutki uboczne. Jeśli możesz to zrobić, będziesz szczęśliwszy,
+i nieokreślenie jednego miejsca dającego skutki uboczne. Jeśli możesz to zrobić, będziesz szczęśliwszy,
 niż zdecydowana większość programistów.
 
 **Źle:**
@@ -800,7 +800,7 @@ dość rzadkie. Większość może być zrefaktoryzowana bez skutków ubocznych!
   2. Klonowanie dużych obiektów może być kosztowne pod względem wydajności. Na szczęście
 w praktyce nie jest to duży problem, gdyż mamy
 [świetne biblioteki](https://facebook.github.io/immutable-js/) pozwalające
-takiemu podejściu do programowania być szybkim i nie obciążającym pamięci aż tak,
+takiemu podejściu do programowania być szybkim i nieobciążającym pamięci aż tak,
 jak by to było w przypadku ręcznego klonowania obiektów i tablic.
 
 **Źle:**
@@ -832,13 +832,13 @@ the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 -->
 ### Nie pisz do funkcji globalnych
-Zanieczyszcznie globalnej przestrzeni jest złą praktyką w języku JavaScript,
+Zanieczyszczanie globalnej przestrzeni jest złą praktyką w języku JavaScript,
 gdyż możesz kolidować z inną biblioteką i użytkownik Twojego API może być niczego nieświadomym, dopóki wyjątek nie pojawi się na produkcji. Pomyślmy o takim przykładzie:
 co jeśli chciałbyś rozszerzyć natywny obiekt Array, aby miał metodę `diff`, która
 może pokazać różnicę między dwiema tablicami? Mógłbyś przypisać swoją nową funkcję
 do `Array.prototype`, ale może to kolidować z inną biblioteką, która próbowała
 zrobić to samo. Co jeśli inna biblioteka używała `diff` do znalezienia
-różnicy między pierwszym i ostatnim elementem tablicy? Własnie dlatego
+różnicy między pierwszym i ostatnim elementem tablicy? Właśnie dlatego
 byłoby dużo lepiej używać po prostu klas wprowadzonych w wersji ES2015/ES6
 i zwyczajnie rozszerzyć globalną `Array`.
 
@@ -869,8 +869,8 @@ Favor this style of programming when you can.
 -->
 ### Przedkładaj programowanie funkcyjne nad programowanie imperatywne
 JavaScript nie jest językiem funkcyjnym w takim stopniu, jak Haskell, ale zawiera trochę
-funckyjnego aromatu. Języki funkcyjne są czystsze i prostsze w testowaniu.
-Preferuj ten styl programowania kiedy tylko możesz.
+funkcyjnego aromatu. Języki funkcyjne są czystsze i prostsze w testowaniu.
+Preferuj ten styl programowania, kiedy tylko możesz.
 
 **Źle:**
 ```javascript
@@ -987,12 +987,12 @@ are telling your user that your function does more than one thing. Remember,
 just do one thing.
 -->
 ### Unikaj warunków
-Wydaje się to być zadaniem niewykonalnym. Większość ludzi słysząc to pierwszy raz powie:
+Wydaje się to być zadaniem niewykonalnym. Większość ludzi słysząc to pierwszy raz, powie:
 "Jak mam zrobić cokolwiek bez instrukcji `if`?" Odpowiedzią jest, że
 możesz użyć polimorfizmu, aby osiągnąć to samo w wielu przypadkach. Drugim
 pytaniem jest zwykle: "Dobrze, to świetnie, ale dlaczego chciałbym to zrobić?"
 Odpowiedzią jest poprzednio poznana koncepcja czystego kodu: funkcja powinna robić
-tylko jedną rzecz. Gdy masz klasy i funkcje zawieracjące instrukcje `if`,
+tylko jedną rzecz. Gdy masz klasy i funkcje zawierające instrukcje `if`,
 mówisz użytkownikowi, że Twoja funkcja robi więcej, niż jedną rzecz. Pamiętaj,
 rób po prostu jedną rzecz.
 
@@ -1094,7 +1094,7 @@ języka JavaScript, gdyż dostarcza statycznego typowania do jego standardowej s
 Problemem z ręcznym sprawdzaniem typów w normalnym JavaScript jest to, że używanie go
 poprawnie wymaga na tyle dużo dodatkowej rozwlekłości, iż otrzymane sztuczne bezpieczeństwo typologiczne
 nie wynagradza utraty czytelności. Utrzymuj Twój JavaScript czystym, pisz
-dobre testy i miej dobre przeglądy kodu. W przeciwnym razie, rób wszystko to samo,
+dobre testy i miej dobre przeglądy kodu. W przeciwnym razie rób wszystko to samo,
 ale używając TypeScript (który, jak powiedziałem, jest świetną alternatywą!).
 
 **Źle:**
@@ -1315,7 +1315,7 @@ classes until you find yourself needing larger and more complex objects.
 ### Przedkładaj klasy wprowadzone w ES2015/ES6 ponad proste funkcje jak w ES5
 Trudno uzyskać czytelne dziedziczenie, konstrukcję i definicje metod
 klasycznymi technikami dostępnymi w ES5. Gdy potrzebujesz dziedziczenia (a bądź świadom,
-że może nie musisz), wykorzystuj klasy wprowadzone w ES2015/ES6. Niemniej jednak, przedkładaj małe funkcje ponad
+że może nie musisz), wykorzystuj klasy wprowadzone w ES2015/ES6. Niemniej jednak przedkładaj małe funkcje ponad
 klasy, dopóki nie będziesz potrzebował większych i bardziej złożonych obiektów.
 
 **Źle:**
@@ -1399,7 +1399,7 @@ and you can chain further class methods onto it.
 ### Wykorzystuj łańcuchowanie metod
 Wzorzec ten jest bardzo przydatny w języku JavaScript i widać to w wielu bibliotekach takich jak
 jQuery i Lodash. Pozwala on uzyskać kod ekspresywny i mniej rozwlekły.
-W związku z tym mówię - użyj łańcuchowania metod i popatrz jak czysty będzie Twój kod.
+W związku z tym mówię - użyj łańcuchowania metod i popatrz, jak czysty będzie Twój kod.
 W funkcjach Twoich klas zwyczajnie zwracaj `this` na końcu każdej funkcji
 i będziesz mógł doczepić do nich (jak ogniwa łańcucha) inne metody klasy.
 
@@ -1507,9 +1507,9 @@ ma więcej sensu niż kompozycja:
 
 1. Twoje dziedziczenie reprezentuje relację "x-jest-y" a nie "x-posiada-y"
 (Człowiek->Zwierzę kontra Użytkownik->SzczegółyUżytkownika).
-2. Możesz wykorzystać ponownie kod ze zbioru swoich klas (Ludzie mogą poruszać się jak wszystkie zwierzęta).
-3. Chcesz dokonać globalnych zmian w klasach pochodnych zmieniając klasę podstawową.
-(Zmienić zużycie kalorii podczas poruszania dla wszystkich zwierząt).
+2. Możesz wykorzystać ponownie kod ze zbioru swoich klas (ludzie mogą poruszać się jak wszystkie zwierzęta).
+3. Chcesz dokonać globalnych zmian w klasach pochodnych zmieniając klasę podstawową
+(zmienić zużycie kalorii podczas poruszania dla wszystkich zwierząt).
 
 **Źle:**
 ```javascript
@@ -1577,7 +1577,7 @@ gdy możesz zabrać tylko jedną walizkę podczas lotu. Problemem jest tutaj to,
 że Twoja klasa nie będzie koncepcyjnie spójna i da jej to wiele powodów
 do zmian. Minimalizacja ilości sytuacji, w których musisz zmienić klasę, jest istotna.
 Jest istotna, gdyż jeśli jedna klasa zawiera zbyt dużo funkcjonalności i modyfikujesz
-część z nich, może stać się trudnym do zrozumienia jak wpłynie to na inne
+część z nich, może stać się trudnym do zrozumienia, jak wpłynie to na inne
 zależne moduły w Twoim kodzie.
 
 **Źle:**
@@ -1737,13 +1737,13 @@ if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 -->
 ### Zasada podstawienia Liskov (LSP)
-Jest to przerażająca nazwa dla bardzo prostego konceptu. Jest formalnie zdefiniowana jako "Jeśli S
+Jest to przerażająca nazwa dla bardzo prostego pojęcia. Jest formalnie zdefiniowana jako "Jeśli S
 jest podtypem T, wtedy obiekty typu T mogą być wymienione z obiektami typu S
 (np. obiekty typu S mogą zastąpić obiekty typu T) bez zmieniania żadnych
-pożądanych właściwości tego programu (poprawność, zadanie wykonane,
+pożądanych właściwości tego programu (poprawność, zadanie wykonane
 itd.)". To jeszcze bardziej przerażająca definicja.
 
-Najlepszym wyjaśnieniem tego będzie jeśli masz klasę bazową i klasę potomną,
+Najlepszym wyjaśnieniem tego będzie, jeśli masz klasę bazową i klasę potomną,
 wtedy klasy bazowa i potomna mogą zostać użyte wymiennie bez otrzymania
 niepoprawnych wyników. Może to być nadal pogmatwane, spójrzmy więc na
 klasyczny przykład: Kwadrat-Prostokąt. Matematycznie kwadrat jest prostokątem, ale
@@ -1868,7 +1868,7 @@ all of the settings. Making them optional helps prevent having a
 "fat interface".
 -->
 ### Zasada segregacji interfejsów (ISP)
-JavaScript nie posiada interfejsów, więc ta zasada nie ma tu tak restrykcyjnego zastosowania
+JavaScript nie posiada interfejsów, więc ta zasada nie ma tu tak restrykcyjnego zastosowania,
 jak pozostałe. Mimo tego jest ważna i istotna nawet przy braku typowania w JavaScript.
 
 ISP stwierdza, że "Na klientach nie powinna być wymuszana zależność od interfejsów,
@@ -2077,14 +2077,14 @@ or refactoring an existing one.
 -->
 ## **Testowanie**
 Testowanie jest ważniejsze niż dostarczanie. Jeśli nie masz testów albo jest ich
-nieodpowiednia ilość, to za każdym razem dostarczając swój kod nie będziesz pewnym,
-że czegoś nie popsułeś. Decyzja o tym, jaka ilość testów jest odpowienia, należy
+nieodpowiednia ilość, to za każdym razem dostarczając swój kod, nie będziesz pewnym,
+że czegoś nie popsułeś. Decyzja o tym, jaka ilość testów jest odpowiednia, należy
 do Twojego zespołu, ale pokrycie w 100% (wszystkie instrukcje i gałęzie) jest tym,
 co pozwoli osiągnąć wysoką pewność i święty spokój dewelopera. Oznacza to, że
 jako dodatek do posiadanego świetnego frameworka do testowania, musisz jeszcze użyć
 [dobrego narzędzia pokrycia](http://gotwarlost.github.io/istanbul/).
 
-Nie ma usprawiedliwienia dla nie pisania testów. Jest [mnóstwo dobrych frameworków testowych] (http://jstherightway.org/#testing-tools), znajdź więc ten, który Twój zespół preferuje.
+Nie ma usprawiedliwienia dla niepisania testów. Jest [mnóstwo dobrych frameworków testowych] (http://jstherightway.org/#testing-tools), znajdź więc ten, który Twój zespół preferuje.
 Kiedy go znajdziesz, wtedy postaw sobie za cel, aby zawsze pisać testy
 dla każdej nowej funkcjonalności/modułu, który wprowadzasz. Jeśli preferowaną przez Ciebie metodą jest
 Test Driven Development (TDD), to świetnie, ale istotą jest po prostu
@@ -2273,7 +2273,7 @@ albo zareagowania na ten błąd. Logowanie błędu do konsoli (`console.log`)
 nie jest dużo lepsze, gdyż może on zaginąć w morzu rzeczy informacji do konsoli.
 Jeśli zawrzesz jakikolwiek kawałek kodu w bloku `try/catch`, oznacza to, że
 myślisz o błędzie mogącym tam wystąpić i w związku z tym powinieneś mieć plan
-albo utworzyć ścieżkę kodu, do miejsca w którym wystąpi.
+albo utworzyć ścieżkę kodu do miejsca, w którym wystąpi.
 
 **Źle:**
 ```javascript
@@ -2357,12 +2357,12 @@ they want. The point is, no matter what you all choose, just be consistent.
 ## **Formatowanie**
 Formatowanie jest subiektywne. Jak w wielu innych tu przypadkach, nie ma sztywnej i szybkiej
 zasady, którą musisz przyjąć. Najważniejsze, abyś NIE SPIERAŁ SIĘ o formatowanie.
-Są [tony narzędzi](http://standardjs.com/rules.html) by to zautomatyzować.
+Są [tony narzędzi](http://standardjs.com/rules.html), by to zautomatyzować.
 Użyj jednego! Spieranie się o formatowanie jest stratą czasu i pieniędzy
 dla inżynierów.
 
 W sprawach, które nie są objęte automatycznym formatowaniem
-(wcięcia, tabulacje kontra spacje, podwójne kontra pojedyncze cudzysłowy, itd.) zaglądnij tu
+(wcięcia, tabulacje kontra spacje, podwójne kontra pojedyncze cudzysłowy itd.) zaglądnij tu
 po trochę wskazówek.
 
 ### Używaj wielkich liter konsekwentnie
@@ -2411,7 +2411,7 @@ top-to-bottom, like a newspaper. Because of this, make your code read that way.
 ### Wywołanie funkcji i wywołana funkcja powinny być blisko siebie
 Jeśli funkcja wywołuje inną, trzymaj te funkcje wertykalnie blisko w pliku źródłowym.
 Najlepiej umieść wywołanie zaraz powyżej wywołanej. Mamy tendencję do czytania kodu
-z góry na dół, jak gazetę. Dlatego też spraw, aby Twój kod był czytany w ten sposób.
+z góry na dół jak gazetę. Dlatego też spraw, aby Twój kod był czytany w ten sposób.
 
 **Źle:**
 ```javascript
@@ -2546,7 +2546,7 @@ function hashIt(data) {
 ### Don't leave commented out code in your codebase
 Version control exists for a reason. Leave old code in your history.
 -->
-### ### Nie pozostawiaj zakomentowanego kodu
+### Nie pozostawiaj zakomentowanego kodu
 Kontrola wersji istnieje nie bez powodu. Pozostaw stary kod w Twojej historii.
 
 **Źle:**
@@ -2568,9 +2568,9 @@ doStuff();
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 -->
-### Nie twórz komentarzy - dziennika.
+### Nie twórz komentarzy-dziennika.
 Pamiętaj, używaj kontroli wersji! Nie jest potrzebny martwy kod, zakomentowany kod
-i przede wszystkim komentarze będące dziennikiem. Używaj `git log` by sprawdzić historię!
+i przede wszystkim komentarze będące dziennikiem. Używaj `git log`, by sprawdzić historię!
 
 **Źle:**
 ```javascript
