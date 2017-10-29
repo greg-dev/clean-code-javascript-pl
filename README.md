@@ -702,7 +702,7 @@ gdzie go umieścisz. Nie miej kilku funkcji i klas, które zapisują do poszczeg
 Miej jedną usługę, która to robi. Jedną i tylko jedną.
 
 Główną kwestią jest unikanie powszechnych pułapek, takich jak dzielenie stanu między obiektami
-bez jakiejkolwiek struktury, użycie mutowalnych typów danych, do których wszystko może pisać
+bez jakiejkolwiek struktury, użycie mutowalnych typów danych, które mogą być nadpisane przez cokolwiek
 i nieokreślenie jednego miejsca dającego skutki uboczne. Jeśli możesz to zrobić, będziesz szczęśliwszy,
 niż zdecydowana większość programistów.
 
