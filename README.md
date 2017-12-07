@@ -134,7 +134,7 @@ setTimeout(blastOff, 86400000);
 
 **Dobrze:**
 ```javascript
-// Zadeklaruj ją jako stałą globalną używając wielkich liter.
+// Zadeklaruj ją jako nazwaną stałą, używając wielkich liter.
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
@@ -862,12 +862,12 @@ class SuperArray extends Array {
 <!--
 ### Favor functional programming over imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages are cleaner and easier to test.
+a functional flavor to it. Functional languages can be cleaner and easier to test.
 Favor this style of programming when you can.
 -->
 ### Przedkładaj programowanie funkcyjne nad programowanie imperatywne
 JavaScript nie jest językiem funkcyjnym w takim stopniu, jak Haskell, ale zawiera trochę
-funkcyjnego aromatu. Języki funkcyjne są czystsze i prostsze w testowaniu.
+funkcyjnego aromatu. Języki funkcyjne mogą być czystsze i prostsze w testowaniu.
 Preferuj ten styl programowania, kiedy tylko możesz.
 
 **Źle:**
@@ -913,10 +913,9 @@ const programmerOutput = [
   }
 ];
 
-const INITIAL_VALUE = 0;
-
 const totalOutput = programmerOutput
-  .reduce((acc, { linesOfCode }) => acc + linesOfCode, INITIAL_VALUE);
+  .map(output => output.linesOfCode)
+  .reduce((totalLines, lines) => totalLines + lines);
 ```
 **[⬆ powrót na początek](#spis-treści)**
 
